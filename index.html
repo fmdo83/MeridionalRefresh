@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Merdional Landingpage</title>
+    <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <style>
+    .butt {
+        border: 1px outset #9cb966;
+        background-color: #6bb240;
+        height:90%;
+        width:100%;
+        margin-top: 20px; 
+        margin-bottom: 20px;
+        cursor:pointer;
+    }
+  </style>
+  <body>
+    <div class="container-fluid">
+
+    <img src="img/header_home_meridionalnet.jpg" class="img-fluid mx-auto d-block" alt="...">
+
+    <nav class="navbar navbar-expand navbar-light" style="background-color: #6bb240; height: 40px;">
+        <div class="container-fluid">
+            <h4 style="vertical-align: middle;">
+
+            </h4>
+
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav">
+                    <a href="#" class="nav-item nav-link active"><b style="color:white">FAHYCO</b></a>
+                </div>
+                <div class="navbar-nav ms-auto">
+                    <a href="#" class="navbar-brand" >
+                        <img src="img/logout-inverse.png" height="30" alt="LOGOUT">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div id="carouselIndicators" class="carousel-indicators">
+        </div>
+        <div id="carouselMain" class="carousel-inner">
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    <div class="row justify-content-right">
+        <div class="col-md-3">
+            <button type="button" class="btn btn-block btn-success butt"><b>COTIZADOR ACCIDENTES PERSONALES</b></button>
+        </div>
+        <div class="col-md-3">
+            <button type="button" class="btn btn-block btn-success butt"><b>COTIZADOR AUTOS Y MOTOS</b></button>
+        </div>
+        <div class="col-md-3">
+            <button type="button" class="btn btn-block btn-success butt"><b>COTIZADOR LINEAS FINANCIERAS</b></button>
+        </div>
+        <div class="col-md-3">
+            <button type="button" class="btn btn-block btn-success butt"><b>COTIZADOR RESPONSABILIDAD CIVIL</b></button>
+        </div>
+    </div>
+    <div class="row justify-content-right">
+        <div class="col-md-3">
+            <button type="button" class="btn btn-block btn-success butt"><b>COTIZADOR BICICLETAS Y OTROS MICROSEGUROS</b></button>
+        </div>
+        <div class="col-md-3">
+            <button type="button" class="btn btn-block btn-success butt"><b>COTIZADOR EQUIPO CONTRATISTAS</b></button>
+        </div>
+        <div class="col-md-3">
+            <button type="button" class="btn btn-block btn-success butt"><b>COTIZADOR LINEAS FINANCIERAS</b></button>
+        </div>
+        <div class="col-md-3">
+            <button type="button" class="btn btn-block btn-success butt"><b>COTIZADOR RESPONSABILIDAD CIVIL</b></button>
+        </div>
+    </div>
+    <div class="row justify-content-right">
+        <div class="col-md-3">
+            <button type="button" class="btn btn-block btn-success butt"><b>COTIZADOR ACCIDENTES PERSONALES</b></button>
+        </div>
+        <div class="col-md-3">
+            <button type="button" class="btn btn-block btn-success butt"><b>COTIZADOR AUTOS Y MOTOS</b></button>
+        </div>
+        <div class="col-md-3">
+            <button type="button" class="btn btn-block btn-success butt"><b>COTIZADOR LINEAS FINANCIERAS</b></button>
+        </div>
+        <!-- <div class="col-md-3">
+            <button type="button" class="btn btn-block btn-success butt"><b>COTIZADOR RESPONSABILIDAD CIVIL</b></button>
+        </div> -->
+    </div>
+
+    <footer class="py-3 my-4">
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+        </ul>
+        <p class="text-center text-muted">Meridional Seguros</p>
+      </footer>
+</div>
+<script>
+    var myHeaders = new Headers()
+    myHeaders.append('pragma', 'no-cache')
+    myHeaders.append('cache-control', 'no-cache')
+    var myInit = {
+        method: 'GET',
+        headers: myHeaders,
+    };
+    var myRequest = new Request('config.json')
+    fetch(myRequest, myInit)
+    .then(response => response.json())
+    .then(data => generateCarousel(data.carousel))
+    .catch(error => console.log(error));
+
+    function generateCarousel(carousel)
+    {
+        for(i=0; i<carousel.length; i++)
+        {
+            var y = i
+            var button = document.createElement('button');
+            button.setAttribute('type','button')
+            button.setAttribute('data-bs-target','#carouselExampleIndicators')
+            button.setAttribute('data-bs-slide-to',i)
+            button.setAttribute('aria-label','Slide ' + (y + 1))
+            if(i == 0)
+            {
+                button.setAttribute('class','active')
+                button.setAttribute('aria-current', 'true')
+            }
+            document.getElementById('carouselIndicators').appendChild(button)
+            var div = document.createElement('div')
+            if(i == 0)
+                div.className = "carousel-item active"
+            else
+                div.className = "carousel-item"
+            div.innerHTML = '<a href="' + 
+                            carousel[i].url +
+                            '">' +
+                            '<img src="carousel/' + 
+                            carousel[i].img +
+                            '.jpg" class="d-block w-100" alt="...">' +
+                            '</a>'
+            document.getElementById('carouselMain').appendChild(div);
+        }
+    }
+</script>    
+<script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
